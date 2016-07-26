@@ -16,7 +16,7 @@ public class TotoDB {
 			System.out.println(ex.getMessage());
 		}
 		Connection conn = null;
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@211.238.142.177:1522:orcl";
 		String user = "hr";
 		String passwd = "hr";
 
