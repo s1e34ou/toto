@@ -23,9 +23,9 @@ public class TotoDB {
 	
 	public static Connection getConnection() throws SQLException {
 		Connection conn = null;
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String passwd = "hr";
+		String url = "jdbc:oracle:thin:@211.238.142.177:1522:orcl";
+		String user = "toto";
+		String passwd = "toto";
 
 		conn = DriverManager.getConnection(url, user, passwd);
 		return conn;
