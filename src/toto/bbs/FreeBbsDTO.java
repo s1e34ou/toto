@@ -1,6 +1,6 @@
 package toto.bbs;
 
-public class TotoBbsDTO {
+public class FreeBbsDTO {
 	private int fSeq;
 	private String fTitle;
 	private String fContent;

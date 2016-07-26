@@ -1,75 +1,196 @@
 create table toto_member(
-	t_id ,
-	t_pw ,
-	t_name ,
-	t_nick ,
-	t_birth ,
-	t_mail ,
-	t_point ,
-	t_auth ,
-	t_pimg 
+	t_id varchar2(50),
+	t_pw varchar2(50),
+	t_name varchar2(50),
+	t_nick varchar2(20),
+	t_birth varchar2(20),
+	t_mail varchar2(50),
+	t_point number,
+	t_auth number,
+	t_pimg varchar2(200)
 );
 
+alter table toto_member
+add constraint pk_t_id primary key (t_id);
+
+alter table toto_member
+add constraint uk_t_mail unique (t_mail);
 
 
-
-
-create table toto_bbs(
-	f_seq ,
-	f_title ,
-	f_content ,
-	f_readcount ,
-	f_wdate , 
-	f_del ,
-	f_replycount
+create table free_bbs(
+	f_seq number,
+	f_title varchar2(200),
+	f_content varchar2(4000),
+	f_nick varchar2(4000),
+	f_readcount number,
+	f_wdate date, 
+	f_del number,
+	f_replycount number	
 );
+
+alter table free_bbs
+add constraint pk_f_seq primary key (f_seq);
+
 
 create table free_reply(
-	fr_seq ,
-	fr_f_seq ,
-	fr_wdate ,
-	fr_content ,
-	fr_del ,
-	fr_nick ,
-	fr_pimg
+	fr_seq number,
+	fr_f_seq number,
+	fr_content varchar2(2000),
+	fr_wdate date,
+	fr_del number,
+	fr_nick varchar2(20),
+	fr_pimg varchar2(200)
 );
 
+alter table free_reply
+add constraint pk_fr_seq primary key (fr_seq);
 
+alter table free_reply
+add CONSTRAINT fk_fr_f_seq FOREIGN key (fr_f_seq) 
+REFERENCES free_bbs(f_seq);
 
 create table betting(
-	b_seq ,
-	b_id ,
-	b_bat ,
-	b_bdate ,
-	b_money ,
-	b_rate ,
-	b_result
+	b_seq number,
+	b_id varchar2(50),
+	b_bat varchar2(300),
+	b_bdate date,
+	b_money number,
+	b_rate number,
+	b_result number
 );
 
-
+alter table betting
+add constraint pk_b_seq primary key (b_seq);
 
 
 create table game_result(
-	g_seq ,
-	g_info ,
-	g_date ,
-	g_time ,
-	g_hteam ,
-	g_hemblem ,
-	g_hscore ,
-	g_ateam ,
-	g_aemblem ,
-	g_ascore ,
-	g_win ,
-	g_draw ,
-	g_lose
+	g_seq number,
+	g_info varchar2(20),
+	g_date date,
+	g_time varchar2(10),
+	g_hteam varchar2(50),
+	g_hemblem varchar2(200),
+	g_hscore number,
+	g_ateam varchar2(50),
+	g_aemblem varchar2(200),
+	g_ascore number,
+	g_win number,
+	g_draw number,
+	g_lose number
+	
 );
 
+alter table game_result
+add constraint pk_g_seq primary key (g_seq);
+
 create table point_list(
-	p_seq ,
-	p_t_id ,
-	p_date ,
-	p_cpoint ,
-	p_tpoint ,
-	p_type
+	p_seq number,
+	p_t_id  varchar2(50),
+	p_date date,
+	p_cpoint number,
+	p_tpoint number,
+	p_type number
 );
+
+alter table point_list
+add constraint pk_p_seq primary key (p_seq);
+
+alter table point_list
+add CONSTRAINT fk_p_t_id FOREIGN key (p_t_id) 
+REFERENCES toto_member(t_id);
+
+create table event_bbs(
+	e_seq number,
+	e_title number,
+	e_content varchar2(4000),
+	e_nick varchar2(20),
+	e_readcount number,
+	e_wdate date,
+	e_sdate date,
+	e_edate date,
+	e_del number,
+	e_notice number
+);
+
+alter table event_bbs
+add constraint pk_e_seq primary key (e_seq);
+
+create table event_result(
+	r_seq number,
+	r_e_seq number,
+	r_id varchar2(50)
+);
+
+alter table event_result
+add constraint pk_r_seq primary key (r_seq);
+
+alter table event_result
+add CONSTRAINT fk_r_e_seq FOREIGN key (r_e_seq) 
+REFERENCES event_bbs(e_seq);
+
+create table qna_bbs(
+	q_seq number,
+	q_title varchar2(200),
+	q_content varchar2(4000),
+	q_nick varchar2(20),
+	q_readcount number,
+	q_wdate date,
+	q_del number,
+	q_replycount number
+);
+
+alter table qna_bbs
+add constraint pk_q_seq primary key (q_seq);
+
+create table qna_reply(
+	qr_seq number,
+	qr_q_seq number,
+	qr_wdate date,
+	qr_content varchar2(200),
+	qr_del number,
+	qr_nick varchar2(20),
+	qr_pimg varchar2(200)
+);
+
+alter table qna_reply
+add constraint pk_qr_seq primary key (qr_seq);
+
+alter table qna_reply
+add CONSTRAINT fk_qr_q_seq FOREIGN key (qr_q_seq) 
+REFERENCES qna_bbs(q_seq);
+
+create sequence free_bbs_f_seq
+increment by 1
+start with 1;
+
+create sequence free_reply_fr_seq
+increment by 1
+start with 1;
+
+create sequence betting_b_seq
+increment by 1
+start with 1;
+
+create sequence game_result_g_seq
+increment by 1
+start with 1;
+
+create sequence point_list_p_seq
+increment by 1
+start with 1;
+
+create sequence event_bbs_e_seq
+increment by 1
+start with 1;
+
+create sequence event_result_r_seq
+increment by 1
+start with 1;
+
+create sequence qna_bbs_q_seq
+increment by 1
+start with 1;
+
+create sequence qna_reply_qr_seq
+increment by 1
+start with 1;
