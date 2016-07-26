@@ -19,14 +19,9 @@ public class TotoDB {
 				System.out.println("Driver Loading fail");
 				System.out.println(e.getMessage());
 			} 
-	}
+	 }
 	
 	public static Connection getConnection() throws SQLException {
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch (ClassNotFoundException ex) {
-			System.out.println(ex.getMessage());
-		}
 		Connection conn = null;
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
