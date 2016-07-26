@@ -9,6 +9,18 @@ import java.sql.Statement;
 public class TotoDB {
 	
 
+	private TotoDB(){}
+	
+	static{
+			try{
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				System.out.println("Driver Loading Sucoess!!!");
+			}catch(ClassNotFoundException e){
+				System.out.println("Driver Loading fail");
+				System.out.println(e.getMessage());
+			} 
+	}
+	
 	public static Connection getConnection() throws SQLException {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
