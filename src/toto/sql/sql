@@ -1,0 +1,75 @@
+create table toto_member(
+	t_id ,
+	t_pw ,
+	t_name ,
+	t_nick ,
+	t_birth ,
+	t_mail ,
+	t_point ,
+	t_auth ,
+	t_pimg 
+);
+
+
+
+
+
+create table toto_bbs(
+	f_seq ,
+	f_title ,
+	f_content ,
+	f_readcount ,
+	f_wdate , 
+	f_del ,
+	f_replycount
+);
+
+create table free_reply(
+	fr_seq ,
+	fr_f_seq ,
+	fr_wdate ,
+	fr_content ,
+	fr_del ,
+	fr_nick ,
+	fr_pimg
+);
+
+
+
+create table betting(
+	b_seq ,
+	b_id ,
+	b_bat ,
+	b_bdate ,
+	b_money ,
+	b_rate ,
+	b_result
+);
+
+
+
+
+create table game_result(
+	g_seq ,
+	g_info ,
+	g_date ,
+	g_time ,
+	g_hteam ,
+	g_hemblem ,
+	g_hscore ,
+	g_ateam ,
+	g_aemblem ,
+	g_ascore ,
+	g_win ,
+	g_draw ,
+	g_lose
+);
+
+create table point_list(
+	p_seq ,
+	p_t_id ,
+	p_date ,
+	p_cpoint ,
+	p_tpoint ,
+	p_type
+);
