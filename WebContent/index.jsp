@@ -8,5 +8,11 @@
 </head>
 <body>
 
+<table style="width: 100%">
+<tr>
+	<td><a href="index.jsp"><img src="img/lowant.gif" style="width: 30%; padding: 20px; margin: 10px; height: 80px"/></a></td>
+</tr>
+</table>
+
 </body>
 </html>
